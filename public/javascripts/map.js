@@ -54,68 +54,41 @@ function renderTweet(tweet) {
 function loadHashtag(hashtag) {
   // We dont need to wait until service responds, just start receiving twitter events.
   fetch(`${window.location.href}?hashtag=${hashtag}`, { method: 'put'});
-  // Load tweets
-  const tweetRef = firebase
-    .database()
-    .ref(`tweets/${hashtag}`)
-    .limitToLast(5);
 
-  tweetRef.on('child_added', (snapshot) => {
-    const tweet = snapshot.val();
-
-    if (tweet) {
-      // Load in container
-      renderTweet(tweet);
-      // Load in map
-      addMarker(map, tweet);
-    }
-  });
-
-  return tweetRef;
+  // -----------------------------
+  // Start coding here!
+  // Connect to firebase, retrieve last 5 tweets and listen to new additions
+  // Once tweet has been received, call 'renderTweet' and 'addMarker'
+  // -----------------------------
+  
 }
 
 function logout() {
-  firebase.auth().signOut().then(() => {
-    window.location.href = window.location.origin + '?logout=true';
-  });
+  // -----------------------------
+  // Start coding here!
+  // Logout and redirect to /
+  // -----------------------------
+
 }
 
 function initTweets() {
   const logout = document.querySelector('#logout');
   const input = document.querySelector('input');
 
-  // Redirect to login if user is not logged in
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-      window.location.href = location.origin;
-    }
-  });
-
   logout.addEventListener('click', () => {
-    firebase.auth().signOut().then(() => {
-      window.location.href = window.location.origin + '?logout=true';
-    });
+    logout();
   });
 
-  // Load tweets
-  let debounce;
-  let tweetRef;
-  let prevHashtag;
   input.addEventListener('keyup', (event) => {
-    clearTimeout(debounce);
-
-    debounce = setTimeout(() => {
-      if (prevHashtag !== event.target.value) {
-        // Remove previous Firebase references
-        if (tweetRef) {
-          tweetRef.off();
-        }
-        // Clean map
-        clean();
-        // Start listening DB events
-        prevHashtag = event.target.value;
-        tweetRef = loadHashtag(event.target.value);
-      }
-    }, 1000);
+    // -----------------------------
+    // Start coding here!
+    // Load tweets on user input
+    // -----------------------------
   });
+
+  // -----------------------------
+  // Start coding here!
+  // Redirect to / if user is not logged in
+  // -----------------------------
+  
 };
