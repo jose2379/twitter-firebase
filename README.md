@@ -15,7 +15,11 @@ npm install
 npm server
 ```
 
-## Plantilla
+## Ejercicio
 
-En la rama [#template](https://github.com/josex2r/twitter-firebase-stream/tree/template) se encuentra el proyecto inicializado con toda la parte del cliente de tal manera que únicamente es necesario programar la parte de firebase.
+Completar los siguientes ficheros:
 
+- `lib/firebase-client.js`: Establecer conexión con Firebase
+- `lib/twitter-stream.js`: Persistir datos en Firebase
+- `public/javascripts/index.js`: Autenticación
+- `public/javascripts/map.js`: Recuperar datos de la base de datos
