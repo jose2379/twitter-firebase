@@ -5,8 +5,8 @@ function initMap() {
   // Create a map object and specify the DOM element for display.
   map = new google.maps.Map(document.getElementById('map'), {
     center: new google.maps.LatLng(0, 0),
-    zoom: 1,
-    minZoom: 1
+    zoom: 2,
+    minZoom: 2
   });
 
   initTweets();
