@@ -54,7 +54,7 @@ function renderTweet(tweet) {
 
 function loadHashtag(hashtag) {
 
-  /---------------------
+  //---------------------
   // Start coding here!
   // Connect to firebase, retrieve last 5 tweets and listen to new additions
   // Once tweet has been received, call 'renderTweet' and 'addMarker'
