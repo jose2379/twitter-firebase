@@ -53,10 +53,8 @@ function renderTweet(tweet) {
 }
 
 function loadHashtag(hashtag) {
-  // We dont need to wait until service responds, just start receiving twitter events.
-  fetch(`${window.location.href}?hashtag=${hashtag}`, { method: 'put'});
 
-  // -----------------------------
+  /---------------------
   // Start coding here!
   // Connect to firebase, retrieve last 5 tweets and listen to new additions
   // Once tweet has been received, call 'renderTweet' and 'addMarker'
