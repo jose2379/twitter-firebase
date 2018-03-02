@@ -59,6 +59,16 @@ function loadHashtag(hashtag) {
   // Connect to firebase, retrieve last 5 tweets and listen to new additions
   // Once tweet has been received, call 'renderTweet' and 'addMarker'
   // -----------------------------
+
+  const ref = firebase.database().ref('tweets/' + hashtag).limitToLast(5);
+
+
+  ref.on('child_added', (snapshot) => {
+    const value = snapshot.val();
+    renderTweet(value);
+    console.log('value', value);
+    addMarker(map, value);
+  })
   
 }
 
@@ -68,6 +78,7 @@ function logout() {
   // Logout and redirect to /
   // -----------------------------
 
+
 }
 
 function initTweets() {
@@ -75,15 +86,31 @@ function initTweets() {
   const input = document.querySelector('input');
 
   logout.addEventListener('click', () => {
-    logout();
+    firebase.auth().signOut().then(() => {
+      window.location.href = window.location.origin;
+    })
   });
+
+
+  let timeout;
 
   input.addEventListener('keyup', (event) => {
     // -----------------------------
     // Start coding here!
     // Load tweets on user input
     // -----------------------------
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      const value = event.target.value;
+      if(value){
+        fetch(window.location.href + '?tag=' + value, {
+          method: 'put'
+        })
+        loadHashtag(value);
+      }
+    }, 1000);
   });
+  //loadHashtag('photo');
 
   // -----------------------------
   // Start coding here!

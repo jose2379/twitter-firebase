@@ -3,9 +3,11 @@
 /**
  * Module dependencies.
  */
+ //Estas tres primeras líneas añaden el environment
 const env = require('node-env-file');
 const path = require('path');
 env(path.resolve(__dirname, '..', '.env'));
+
 const app = require('../app');
 const debug = require('debug')('simple-chat:server');
 const http = require('http');
